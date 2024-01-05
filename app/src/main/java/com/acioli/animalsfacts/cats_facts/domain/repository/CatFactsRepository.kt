@@ -6,6 +6,6 @@ import com.acioli.animalsfacts.cats_facts.domain.model.CatFacts
 
 interface CatFactsRepository {
 
-    suspend fun getRandomCatFacts(count: Int): LiveData<Results<List<CatFacts>>>
+     fun getRandomCatFacts(count: Int? = null): LiveData<Results<CatFacts>>
 
 }
