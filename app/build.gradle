@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.acioli.animalsfacts'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.acioli.animalsfacts"
@@ -55,10 +55,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
 
     //Koin di
-    implementation "io.insert-koin:koin-android:3.2.0-beta-1"
-    implementation "io.insert-koin:koin-androidx-navigation:3.2.0-beta-1"
-    implementation "io.insert-koin:koin-androidx-compose:3.2.0-beta-1"
-    testImplementation "io.insert-koin:koin-test-junit4:3.2.0-beta-1"
+    implementation "io.insert-koin:koin-core:3.0.2"
+    implementation "io.insert-koin:koin-android:3.0.2"
 
+    //Live data coroutine
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
 
 }

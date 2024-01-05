@@ -1,43 +1,39 @@
 package com.acioli.animalsfacts.cats_facts.data.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.acioli.animalsfacts.cats_facts.constants.Results
 import com.acioli.animalsfacts.cats_facts.data.api.CatApi
 import com.acioli.animalsfacts.cats_facts.domain.model.CatFacts
 import com.acioli.animalsfacts.cats_facts.domain.repository.CatFactsRepository
-import kotlinx.coroutines.runBlocking
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.net.ConnectException
 
 class CatFactsRepositoryImpl(
     private val catApi: CatApi
 ) : CatFactsRepository {
 
-    override suspend fun getRandomCatFacts(count: Int): LiveData<Results<List<CatFacts>>> {
+    override fun getRandomCatFacts(count: Int?): LiveData<Results<CatFacts>> = liveData<Results<CatFacts>> {
 
-        val data = MutableLiveData<Results<List<CatFacts>>>()
+            try {
+                val answer = catApi.getRandomCatsFacts(3)
 
-        catApi.getRandomCatsFacts(count).enqueue(object : Callback<List<CatFacts>> {
+                if (answer.isSuccessful) {
+                    emit(Results.Success(data = answer.body()))
+                } else {
+                    emit(Results.Error("erro ao acessar fatos de gatos"))
+                }
 
-            override fun onResponse(
-                call: Call<List<CatFacts>>,
-                response: Response<List<CatFacts>>
-            ) {
+            } catch (e: ConnectException) {
 
-                data.value = Results.Success(data = response.body())
+                e.printStackTrace()
+                emit(Results.Error("falha na comunicação da api"))
+
+            } catch (e: Exception) {
+
+                e.printStackTrace()
+                emit(Results.Error("erro"))
 
             }
-
-            override fun onFailure(call: Call<List<CatFacts>>, t: Throwable) {
-
-                data.value = Results.Error("$t")
-
-            }
-        })
-
-        return data
 
     }
 
