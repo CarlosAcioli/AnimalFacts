@@ -18,6 +18,3 @@ The CatService was created using LiveData and Response, the Response is a Retrof
 The DogService was created usind StateFlow and Flow, the StateFlow is a modern alternative for LiveData, that is, do the same as LiveData, watches data and storage them, and Flow is basically a flow that can emit certains values defined by you developer, and then handle it
 
 > The explanations made above was very brief and it's recommended that you search this terms you don't know
-
-## 1. 🐱 CatService
-
