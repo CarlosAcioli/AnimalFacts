@@ -2,6 +2,7 @@ package com.acioli.animalsfacts
 
 import android.app.Application
 import com.acioli.animalsfacts.cats_facts.di.catFactsModule
+import com.acioli.animalsfacts.dogs_service.di.dogFactsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -12,7 +13,7 @@ class MyApplication: Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MyApplication)
-            modules(catFactsModule)
+            modules(catFactsModule, dogFactsModule)
         }
 
     }

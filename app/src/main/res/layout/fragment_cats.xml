@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cats_facts.presentation.showCatFacts.view.CatsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/showCatFactsRv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberFactsEt" />
+
+    <EditText
+        android:id="@+id/numberFactsEt"
+        style="@style/Widget.Material3.TextInputEditText.FilledBox"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="number of fact of cats"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/GetFacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/pink"
+        android:text="Get facts!"
+        app:layout_constraintBottom_toBottomOf="@+id/numberFactsEt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/numberFactsEt"
+        app:layout_constraintTop_toTopOf="@id/numberFactsEt">
+    </Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

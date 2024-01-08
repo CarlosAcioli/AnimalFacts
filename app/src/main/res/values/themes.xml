@@ -5,5 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="MyButton" parent="Widget.AppCompat.Button.Small">
+        <item name="android:backgroundTint">@color/pink</item>
+    </style>
+
     <style name="Theme.AnimalsFacts" parent="Base.Theme.AnimalsFacts" />
 </resources>

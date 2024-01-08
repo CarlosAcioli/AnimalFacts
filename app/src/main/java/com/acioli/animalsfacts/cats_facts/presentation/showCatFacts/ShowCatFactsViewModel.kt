@@ -1,5 +1,6 @@
 package com.acioli.animalsfacts.cats_facts.presentation.showCatFacts
 
+import android.net.http.HttpException
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,7 +19,6 @@ class ShowCatFactsViewModel(
 
     private val _numState = MutableLiveData<Int>()
     val numState: LiveData<Int> = _numState
-
     fun getRandomCatFacts(count: Int) = viewModelScope.launch {
 
         _numState.postValue(count)
@@ -36,26 +36,3 @@ class ShowCatFactsViewModel(
     }
 
 }
-
-//try {
-//    val answer = catRepo.getRandomCatFacts()
-//    val foo = answer.body()?.data!!
-//
-//    if (answer.isSuccessful) {
-//        emit(Results.Success(data = foo))
-//        _state.value = foo
-//    } else {
-//        emit(Results.Error("erro ao acessar fatos de gatos"))
-//    }
-//
-//} catch (e: ConnectException) {
-//
-//    e.printStackTrace()
-//    emit(Results.Error("falha na comunicação da api"))
-//
-//} catch (e: Exception) {
-//
-//    e.printStackTrace()
-//    emit(Results.Error("erro"))
-//
-//}

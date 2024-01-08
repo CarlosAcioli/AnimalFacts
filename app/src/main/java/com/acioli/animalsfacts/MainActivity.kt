@@ -1,13 +1,11 @@
 package com.acioli.animalsfacts
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.acioli.animalsfacts.cats_facts.presentation.showCatFacts.ShowCatFactsViewModel
-import com.acioli.animalsfacts.cats_facts.presentation.showCatFacts.view.ShowCatFactsAdapter
+import androidx.fragment.app.Fragment
+import com.acioli.animalsfacts.cats_facts.presentation.showCatFacts.view.CatsFragment
 import com.acioli.animalsfacts.databinding.ActivityMainBinding
-import org.koin.androidx.viewmodel.ext.android.getViewModel
+import com.acioli.animalsfacts.dogs_service.presentation.showDogFacts.view.DogsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,58 +14,40 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        replaceFragment(CatsFragment())
 
-        val viewModel = getViewModel<ShowCatFactsViewModel>()
-        val state = viewModel.state.value
-        Log.e("TAG", "onCreate: $state")
-        val dataInfo = listOf("Carlos", "Henrique", "Acioli", "dos", "Santos", "Ray", "chasray")
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
 
-        binding.showCatFactsRv.layoutManager = LinearLayoutManager(this)
-        binding.showCatFactsRv.setHasFixedSize(true)
-        binding.showCatFactsRv.adapter = ShowCatFactsAdapter(emptyList())
+            when (item.itemId) {
 
-        binding.GetFacts.setOnClickListener {
+                R.id.cats -> {
 
-            val numberCatFact = binding.numberFactsEt.text.toString().toInt()
-            viewModel.getRandomCatFacts(numberCatFact)
+                    replaceFragment(CatsFragment())
+
+                }
+
+                R.id.dogs -> {
+
+                    replaceFragment(DogsFragment())
+
+                }
+
+            }
+
+            true
 
         }
 
-        viewModel.state.observe(this) {
 
-            binding.showCatFactsRv.adapter = ShowCatFactsAdapter(it.data)
+    }
 
-        }
+    private fun replaceFragment(fragment: Fragment) {
 
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
 
-//        viewModel.getRandomCatFacts().observe(this) { result ->
-//
-//            when (result) {
-//                is Results.Success -> {
-//
-//                    result.data?.let {
-//                        binding.showCatFactsRv.adapter = ShowCatFactsAdapter(viewModel.state.value?: emptyList())
-//                    } ?: Toast.makeText(this, "fatos estão nulos, mas sucesso", Toast.LENGTH_LONG)
-//                        .show()
-//
-//                }
-//
-//                is Results.Error -> {
-//
-//                    Toast.makeText(
-//                        this,
-//                        result.message ?: "mensagem nula de erro",
-//                        Toast.LENGTH_LONG
-//                    ).show()
-//
-//                }
-//
-//                is Results.Loading -> Unit
-//
-//                else -> Unit
-//            }
-//
-//        }
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
 
     }
 
