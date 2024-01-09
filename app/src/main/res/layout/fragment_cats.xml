@@ -22,6 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="number of fact of cats"
+        android:inputType="number"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

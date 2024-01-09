@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.acioli.animalsfacts.R
 
 class ShowCatFactsAdapter(
-    private val data: List<String>
+     val data: List<String>
 ) : RecyclerView.Adapter<ShowCatFactsAdapter.ShowCatFactsViewHolder>() {
 
 

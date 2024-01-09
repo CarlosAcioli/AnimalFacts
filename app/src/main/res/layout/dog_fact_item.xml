@@ -22,7 +22,7 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/showCatFactTv"
+                android:id="@+id/showDogFactTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="testing testing very muchtesting testing very much testing testing very much testing testing very much testing testing "
@@ -30,7 +30,7 @@
                 android:textSize="17sp"
                 android:fontFamily="@font/lexend_deca_variable_font_wght"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/CatFootImg"
+                app:layout_constraintEnd_toEndOf="@+id/DogFootImg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="15dp">
@@ -38,10 +38,10 @@
             </TextView>
 
             <ImageView
-                android:id="@+id/CatFootImg"
+                android:id="@+id/DogFootImg"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/cat_ic"
+                android:src="@drawable/dog_ic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 

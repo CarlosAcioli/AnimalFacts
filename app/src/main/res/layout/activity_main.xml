@@ -24,7 +24,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav"/>
+        app:menu="@menu/bottom_nav"
+        android:background="@drawable/bottom_nav_bg"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:itemIconSize="32dp"
+        app:itemTextColor="@color/item_color"
+        app:itemIconTint="@color/item_color"
+        app:itemActiveIndicatorStyle="@color/transp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

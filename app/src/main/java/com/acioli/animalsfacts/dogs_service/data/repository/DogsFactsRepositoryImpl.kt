@@ -1,5 +1,6 @@
 package com.acioli.animalsfacts.dogs_service.data.repository
 
+import android.util.Log
 import com.acioli.animalsfacts.dogs_service.constants.Results
 import com.acioli.animalsfacts.dogs_service.data.api.DogApi
 import com.acioli.animalsfacts.dogs_service.domain.model.DogFacts
@@ -22,6 +23,7 @@ class DogsFactsRepositoryImpl (
             try {
 
                 val dogsFacts = dogApi.getRandomDogsFacts(count).toDogFacts()
+                Log.e("API", "repo impl: $dogsFacts", )
 
                 emit(Results.Success(data = dogsFacts))
 

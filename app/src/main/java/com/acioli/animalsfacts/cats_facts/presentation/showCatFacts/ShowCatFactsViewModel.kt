@@ -26,7 +26,7 @@ class ShowCatFactsViewModel(
         catRepo.getRandomCatFacts(count).let { response ->
 
             if (response.isSuccessful) {
-                _state.postValue(response.body())
+                _state.value = response.body()
             } else {
                 Log.e("erro", "error: ${response.message()}", )
             }
