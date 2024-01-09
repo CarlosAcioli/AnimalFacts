@@ -1,6 +1,8 @@
 # 🐱🐶 Animal Facts
 
-App that shows cats and dogs facts, in any amount you want
+App that shows cats and dogs facts, in any amount you want. Preserving data when activity is recreated
+
+https://github.com/CarlosAcioli/AnimalFacts/assets/131110961/d70ccf9d-e1a5-4e4e-aa62-0d3c322c72bb
 
 ## 🎯 Objective
 
