@@ -1,14 +1,13 @@
 package com.acioli.animalsfacts
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.acioli.animalsfacts.cats_facts.constants.Results
-import com.acioli.animalsfacts.cats_facts.presentation.showCatFacts.ShowCatFactsViewModel
-import com.acioli.animalsfacts.cats_facts.presentation.showCatFacts.view.ShowCatFactsAdapter
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.acioli.animalsfacts.cats_facts.presentation.showCatFacts.view.CatsFragment
 import com.acioli.animalsfacts.databinding.ActivityMainBinding
-import org.koin.androidx.viewmodel.ext.android.getViewModel
+import com.acioli.animalsfacts.dogs_service.presentation.showDogFacts.DogFactsViewModel
+import com.acioli.animalsfacts.dogs_service.presentation.showDogFacts.view.DogsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,44 +16,57 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        replaceFragment(CatsFragment())
 
-        val viewModel = getViewModel<ShowCatFactsViewModel>()
-        val dataInfo = listOf("Carlos", "Henrique", "Acioli", "dos", "Santos", "Ray", "chasray")
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
 
+            when (item.itemId) {
 
-        binding.showCatFactsRv.layoutManager = LinearLayoutManager(this)
-        binding.showCatFactsRv.setHasFixedSize(true)
-        binding.showCatFactsRv.adapter = ShowCatFactsAdapter(emptyList())
+                R.id.cats -> {
 
-
-        viewModel.getRandomCatFacts().observe(this) { result ->
-
-            when (result) {
-                is Results.Success -> {
-
-                    result.data?.let {
-                        binding.showCatFactsRv.adapter = ShowCatFactsAdapter(it.data)
-                    } ?: Toast.makeText(this, "fatos estão nulos, mas sucesso", Toast.LENGTH_LONG)
-                        .show()
+                    replaceFragment(CatsFragment())
 
                 }
 
-                is Results.Error -> {
+                R.id.dogs -> {
 
-                    Toast.makeText(
-                        this,
-                        result.message ?: "mensagem nula de erro",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    replaceFragment(DogsFragment())
 
                 }
 
-                is Results.Loading -> Unit
-
-                else -> Unit
             }
 
+            true
+
         }
+
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("selectedItemId", binding.bottomNavigationView.selectedItemId)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        when (savedInstanceState.getInt("selectedItemId")) {
+            R.id.cats -> {
+                replaceFragment(CatsFragment())
+            }
+            R.id.dogs -> {
+                replaceFragment(DogsFragment())
+            }
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
 
     }
 
